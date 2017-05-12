@@ -28,9 +28,9 @@ type Video struct {
 	H              int       `json:"h,omitempty"`              //视频播放器的高度，像素为单位
 	StartDelay     int       `json:"startdelay,omitempty"`     //视频前，中及之后的广告位中视频广告的启动延时，以秒为单位, 参考5.10
 	Linearity      int       `json:"linearity,omitempty"`      //展示是否必须是线性的， 如果没有指定，则标识都是被允许的，参考5.11
-	Skip           int       `json:"skip,omitempty"`           // Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes.
-	SkipMin        int       `json:"skipmin,omitempty"`        // Videos of total duration greater than this number of seconds can be skippable
-	SkipAfter      int       `json:"skipafter,omitempty"`      // Number of seconds a video must play before skipping is enabled
+	Skip           int       `json:"skip,omitempty"`           //Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes.
+	SkipMin        int       `json:"skipmin,omitempty"`        //Videos of total duration greater than this number of seconds can be skippable
+	SkipAfter      int       `json:"skipafter,omitempty"`      //Number of seconds a video must play before skipping is enabled
 	Sequence       int       `json:"sequence,omitempty"`       //如果在同一个竞价请求中提供了多个展示， 则需要考虑多个物料传输的顺序 Default: 1
 	BAttr          []int     `json:"battr,omitempty"`          //限制的物料属性，参考5.3
 	MaxExtended    int       `json:"maxextended,omitempty"`    //最大的视频广告延长时间长度（如果支持延长）。如果为空或者0，表示不允许延长， 如果为-1，表示允许延时，且没有时间限制， 如果为大于0的数字， 则表示可以延长的时间长度比maxduration大的值
