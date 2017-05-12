@@ -1,2 +1,2 @@
-# openrtb
-openrtb for golang
+# OpenRTB
+OpenRTB for GoLang 中文注释
