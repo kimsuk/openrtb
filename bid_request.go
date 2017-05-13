@@ -24,13 +24,13 @@ type BidRequest struct {
 	AuctionType int          `json:"at"`                //拍卖类型（胜出策略）1表示第一价格 ，2标识第二价格。交易特定的拍卖类型可以用大于500的值定义
 	TMax        int          `json:"tmax,omitempty"`    //用于在提交竞价请求时避免超时的最大时间，以毫秒为单位，这个值通常是线下沟通的
 	WSeat       []string     `json:"wseat,omitempty"`   //允许在本次展现上进行竞拍的买家白Seat名单。 交易平台和竞拍者必须提前协商好Seat IDs
-	BSeat       []string     `json:"bseat,omitempty"`   // Array of buyer seats blocked to bid on this auction
-	WLang       []string     `json:"wlang,omitempty"`   // Array of languages for creatives using ISO-639-1-alpha-2
+	BSeat       []string     `json:"bseat,omitempty"`   //Array of buyer seats blocked to bid on this auction
+	WLang       []string     `json:"wlang,omitempty"`   //Array of languages for creatives using ISO-639-1-alpha-2
 	AllImps     int          `json:"allimps,omitempty"` //用于标识交易平台是否可以验证当前的展示列表包含了当前上下文中所有展示。（例如，一个页面上的所有广告位，所有的视频广告点（视频前，视频中，时候后））用于支持路由封锁。 0表示不支持或未知， 1表示提供的展示列表代表所有可用的展示。 Default: 0
 	Cur         []string     `json:"cur,omitempty"`     //本次竞价请求允许的货币列表， 使用ISO-4217 字母码。 仅在交易平台接收多种货币的时候推荐填充。
 	Bcat        []string     `json:"bcat,omitempty"`    //被封锁的广告主类别，使用IAB 内容类别，参考5.1。
 	BAdv        []string     `json:"badv,omitempty"`    //域名封锁列表（比如 ford.com)
-	BApp        []string     `json:"bapp,omitempty"`    // Block list of applications by their platform-specific exchange-independent application identifiers. On Android, these should be bundle or package names (e.g., com.foo.mygame).  On iOS, these are numeric IDs.
+	BApp        []string     `json:"bapp,omitempty"`    //Block list of applications by their platform-specific exchange-independent application identifiers. On Android, these should be bundle or package names (e.g., com.foo.mygame).  On iOS, these are numeric IDs.
 	Regs        *Regulations `json:"regs,omitempty"`    //Reg对象， 指明对本次请求有效的工业，法律或政府条例
 	Ext         Extension    `json:"ext,omitempty"`
 
