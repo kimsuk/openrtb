@@ -216,77 +216,72 @@ type Publisher ThirdParty
 // considered unknown.
 type Producer ThirdParty
 
-// Note that the Geo Object may appear in one or both the Device Object and the User Object.
-// This is intentional, since the information may be derived from either a device-oriented source
-// (such as IP geo lookup), or by user registration information (for example provided to a publisher
-// through a user registration).
+// 用于封装一个地理位置信息的多种不同属性。 当作为Device对象的子节点的时候，标识设备的地理位置或者用户当前的地理位置。
+// 当作为User的子节点的时候，标识用户家的位置（也就是说，不必是用户的当前位置）。
+// 设备的位置或者用户家的位置，由其父对象决定
 type Geo struct {
-	Lat           float64   `json:"lat,omitempty"`           // Latitude from -90 to 90
-	Lon           float64   `json:"lon,omitempty"`           // Longitude from -180 to 180
-	Type          int       `json:"type,omitempty"`          // Indicate the source of the geo data
+	Lat           float64   `json:"lat,omitempty"`           // 纬度信息，取值范围-90.0到+90.0， 负值表示南方
+	Lon           float64   `json:"lon,omitempty"`           // 经度信息， 取值返回-180.0到+180.0， 负值表示西方
+	Type          int       `json:"type,omitempty"`          // 位置信息的源， 当传递lat/lon的时候推荐填充， 参考表5.16
 	Accuracy      int       `json:"accuracy,omitempty"`      // Estimated location accuracy in meters; recommended when lat/lon are specified and derived from a device’s location services
 	LastFix       int       `json:"lastfix,omitempty"`       // Number of seconds since this geolocation fix was established.
 	IPService     int       `json:"ipservice,omitempty"`     // Service or provider used to determine geolocation from IP address if applicable
-	Country       string    `json:"country,omitempty"`       // Country using ISO 3166-1 Alpha 3
-	Region        string    `json:"region,omitempty"`        // Region using ISO 3166-2
-	RegionFIPS104 string    `json:"regionFIPS104,omitempty"` // Region of a country using FIPS 10-4
-	Metro         string    `json:"metro,omitempty"`
-	City          string    `json:"city,omitempty"`
-	Zip           string    `json:"zip,omitempty"`
-	UTCOffset     int       `json:"utcoffset,omitempty"` // Local time as the number +/- of minutes from UTC
-	Ext           Extension `json:"ext,omitempty"`
+	Country       string    `json:"country,omitempty"`       // 国家码， 使用 ISO-3166-1-alpha-3
+	Region        string    `json:"region,omitempty"`        // 区域码， 使用ISO-3166-2; 如果美国则使用2字母区域码
+	RegionFIPS104 string    `json:"regionFIPS104,omitempty"` // 国家的区域，使用 FIPS 10-4 表示。 虽然OpenRTB支持这个属性，它已经与2008年被NIST撤销了
+	Metro         string    `json:"metro,omitempty"`         // 谷歌metro code; 与Nielsen DMA相似但不完全相同， 参见附录A
+	City          string    `json:"city,omitempty"`          // 城市名，使用联合国贸易与运输位置码， 参见附录A
+	Zip           string    `json:"zip,omitempty"`           // 邮政编码或者邮递区号
+	UTCOffset     int       `json:"utcoffset,omitempty"`     // 使用UTC加或者减分钟数的方式表示的本地时间
+	Ext           Extension `json:"ext,omitempty"`           // 特定交易的OpenRTB协议的扩展信息占位符
 }
 
-// This object contains information known or derived about the human user of the device (i.e., the
-// audience for advertising). The user id is an exchange artifact and may be subject to rotation or other
-// privacy policies. However, this user ID must be stable long enough to serve reasonably as the basis for
-// frequency capping and retargeting.
+// 描述了解或者持有设备的用户的信息（也就是广告的受众）。
+// 用户id是一个exchange artifact, 可能随着屏幕旋转或者其他的隐私策略改变。
+// 尽管如此，用户id必须在足够长的一段时间内保持不变，以为目标用户定向和用户访问频率限制提供合理的服务。
+// 设备的用户， 广告的受众
 type User struct {
-	ID         string    `json:"id,omitempty"`         // Unique consumer ID of this user on the exchange
+	ID         string    `json:"id,omitempty"`         // 交易特定的用户标识， 推荐id和buyeruid中至少提供一个
 	BuyerID    string    `json:"buyerid,omitempty"`    // Buyer-specific ID for the user as mapped by the exchange for the buyer. At least one of buyeruid/buyerid or id is recommended. Valid for OpenRTB 2.3.
-	BuyerUID   string    `json:"buyeruid,omitempty"`   // Buyer-specific ID for the user as mapped by the exchange for the buyer. Same as BuyerID but valid for OpenRTB 2.2.
-	YOB        int       `json:"yob,omitempty"`        // Year of birth as a 4-digit integer.
-	Gender     string    `json:"gender,omitempty"`     // Gender ("M": male, "F" female, "O" Other)
-	Keywords   string    `json:"keywords,omitempty"`   // Comma separated list of keywords, interests, or intent
-	CustomData string    `json:"customdata,omitempty"` // Optional feature to pass bidder data that was set in the exchange's cookie. The string must be in base85 cookie safe characters and be in any format. Proper JSON encoding must be used to include "escaped" quotation marks.
-	Geo        *Geo      `json:"geo,omitempty"`
-	Data       []Data    `json:"data,omitempty"`
-	Ext        Extension `json:"ext,omitempty"`
+	BuyerUID   string    `json:"buyeruid,omitempty"`   // 买方为用户指定的ID，由交易平台为买方映射。推荐id和buyeruid中至少提供一个.
+	YOB        int       `json:"yob,omitempty"`        // 生日年份，使用4位数字表示
+	Gender     string    `json:"gender,omitempty"`     // 性别， M表示男性， F表示女性， O标识其他类型，不填充表示未知
+	Keywords   string    `json:"keywords,omitempty"`   // 逗号分隔的关键字， 兴趣或者意向列表
+	CustomData string    `json:"customdata,omitempty"` // 可选特性， 用于传递给竞拍者信息，在交易平台的cookie中设置。字符串必须使用base85编码的 cookie，可以是任意格式。 JSON加密的时候必须包括转义的引号
+	Geo        *Geo      `json:"geo,omitempty"`        // Geo对象， 用户家的位置信息。不必是用户的当前位置
+	Data       []Data    `json:"data,omitempty"`       // 附加的用户信息， 每个 Data对象表示一个不同的数据源
+	Ext        Extension `json:"ext,omitempty"`        // 特定交易的OpenRTB协议的扩展信息占位符
 }
 
-// The data and segment objects together allow additional data about the user to be specified. This data
-// may be from multiple sources whether from the exchange itself or third party providers as specified by
-// the id field. A bid request can mix data objects from multiple providers. The specific data providers in
-// use should be published by the exchange a priori to its bidders.
+// Data和Segment对象一起允许指定用户附加信息。数据可能来自多个数据源， 可能来自交易平台自身或者第三方提供的信息， 可以使用id属性区分。
+// 一个竞价请求可以混合来自多个提供者的数据信息。 交易平台应该优先提供正在使用的数据提供者的信息
 type Data struct {
-	ID      string    `json:"id,omitempty"`
-	Name    string    `json:"name,omitempty"`
-	Segment []Segment `json:"segment,omitempty"`
-	Ext     Extension `json:"ext,omitempty"`
+	ID      string    `json:"id,omitempty"`      // 交易特定的数据提供者标识
+	Name    string    `json:"name,omitempty"`    // 交易特定的数据提供者名称
+	Segment []Segment `json:"segment,omitempty"` // 包含数据内容的一组Segment对象
+	Ext     Extension `json:"ext,omitempty"`     // 特定交易的OpenRTB协议的扩展信息占位符
 }
 
-// Segment objects are essentially key-value pairs that convey specific units of data about the user. The
-// parent Data object is a collection of such values from a given data provider. The specific segment
-// names and value options must be published by the exchange a priori to its bidders.
+// 数据字段， 描述用户信息数据的键值对。 其父对象Data是某个给定数据提供者的数据字段的集合。
+// 交易平台必须优先将字段的名称和值传递给竞拍者
 type Segment struct {
-	ID    string    `json:"id,omitempty"`
-	Name  string    `json:"name,omitempty"`
-	Value string    `json:"value,omitempty"`
-	Ext   Extension `json:"ext,omitempty"`
+	ID    string    `json:"id,omitempty"`    // 数据提供者的特定数据段的ID
+	Name  string    `json:"name,omitempty"`  // 数据提供者的特定数据段的名称
+	Value string    `json:"value,omitempty"` // 表示数据字段值的字符串
+	Ext   Extension `json:"ext,omitempty"`   // 特定交易的OpenRTB协议的扩展信息占位符
 }
 
-// This object contains any legal, governmental, or industry regulations that apply to the request. The
-// coppa flag signals whether or not the request falls under the United States Federal Trade Commission's
-// regulations for the United States Children's Online Privacy Protection Act ("COPPA").
+// 描述任何适用于该请求的法律，政府或者工业管控条例。
+// coppa(Children’s Online Privacy Protection Act)标志着是否该请求是否符合美国联邦贸易委员会颁布的美国儿童在线隐私保护法案，详情可参考7.1节
 type Regulations struct {
-	Coppa int       `json:"coppa,omitempty"` // Flag indicating if this request is subject to the COPPA regulations established by the USA FTC, where 0 = no, 1 = yes.
-	Ext   Extension `json:"ext,omitempty"`
+	Coppa int       `json:"coppa,omitempty"` // 标志着该请求是否遵从COPPA法案， 0表示不遵从， 1表示遵从
+	Ext   Extension `json:"ext,omitempty"`   // 特定交易的OpenRTB协议的扩展信息占位符
 }
 
 // This object represents an allowed size (i.e., height and width combination) for a banner impression.
 // These are typically used in an array for an impression where multiple sizes are permitted.
 type Format struct {
-	W   int       `json:"w,omitempty"` // Width in device independent pixels (DIPS).
-	H   int       `json:"h,omitempty"` //Height in device independent pixels (DIPS).
-	Ext Extension `json:"ext,omitempty"`
+	W   int       `json:"w,omitempty"`   // Width in device independent pixels (DIPS).
+	H   int       `json:"h,omitempty"`   // Height in device independent pixels (DIPS).
+	Ext Extension `json:"ext,omitempty"` //
 }
