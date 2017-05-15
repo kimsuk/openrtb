@@ -34,7 +34,7 @@ type BidRequest struct {
 	Source      *Source      `json:"source,omitempty"`  // A Sorce object (Section 3.2.2) that provides data about the inventory source and which entity makes the final decision.
 	Regs        *Regulations `json:"regs,omitempty"`    // Reg对象， 指明对本次请求有效的工业，法律或政府条例
 	Ext         Extension    `json:"ext,omitempty"`     // 特定交易的OpenRTB协议的扩展信息占位符
-	Pmp         *Pmp         `json:"pmp,omitempty"`     // DEPRECATED: kept for backwards compatibility
+	//Pmp         *Pmp         `json:"pmp,omitempty"`     // DEPRECATED: kept for backwards compatibility
 }
 
 // Validates the request

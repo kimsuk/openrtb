@@ -1,130 +1,160 @@
 package openrtb
 
+// OpenRTB 2.5
+// 5.1 Content Categories
+
 // 5.2 Banner Ad Types, 广告类型
 const (
-	BannerTypeXHTMLText = 1 //XHTML 文本广告（通常用于移动手机）
-	BannerTypeXHTML     = 2 //XHTML Banner 广告 （通常用于移动手机）
-	BannerTypeJS        = 3 //Javascript 广告， 必须是合法的XHTML(即用script标签包裹)
-	BannerTypeFrame     = 4 //iFrame广告
+	BannerTypeXHTMLText = 1 // XHTML 文本广告（通常用于移动手机）
+	BannerTypeXHTML     = 2 // XHTML Banner 广告 （通常用于移动手机）
+	BannerTypeJS        = 3 // Javascript 广告， 必须是合法的XHTML(即用script标签包裹)
+	BannerTypeFrame     = 4 // iFrame广告
 )
 
 // 5.3 Creative Attributes, 物料属性
 const (
-	CreativeAttributeAudioAdAutoPlay                 = 1  //音频广告（自动播放）
-	CreativeAttributeAudioAdUserInitiated            = 2  //音频广告（用户触发）
-	CreativeAttributeExpandableAuto                  = 3  //可伸展（自动）
-	CreativeAttributeExpandableUserInitiatedClick    = 4  //可伸展（用户点击触发）
-	CreativeAttributeExpandableUserInitiatedRollover = 5  //可伸展（用户翻转触发）
-	CreativeAttributeInBannerVideoAdAutoPlay         = 6  //Banner内视频广告（自动播放）
-	CreativeAttributeInBannerVideoAdUserInitiated    = 7  //Banner内视频广告（用户触发）
-	CreativeAttributePop                             = 8  //弹出广告（例如，在退出之前，之后或者当退出的时候）
-	CreativeAttributeProvocativeOrSuggestiveImagery  = 9  //Provocative or Suggestive Imagery
-	CreativeAttributeExtremeAnimation                = 10 //Shaky, Flashing, Flickering, Extreme Animation, Smileys
-	CreativeAttributeSurveys                         = 11 //调查问卷
-	CreativeAttributeTextOnly                        = 12 //文本广告
-	CreativeAttributeUserInitiated                   = 13 //用户互动 （比如，嵌入式游戏）
-	CreativeAttributeWindowsDialogOrAlert            = 14 //窗口对话框或弹出提示框
-	CreativeAttributeHasAudioWithPlayer              = 15 //具有音频开关按钮
-	CreativeAttributeAdProvidesSkipButton            = 16 //广告可以被跳过（例如，片头广告视频的跳过按钮）
-	CreativeAttributeAdobeFlash                      = 17 //Flash广告
+	CreativeAttributeAudioAdAutoPlay                 = 1  // 音频广告（自动播放）
+	CreativeAttributeAudioAdUserInitiated            = 2  // 音频广告（用户触发）
+	CreativeAttributeExpandableAuto                  = 3  // 可伸展（自动）
+	CreativeAttributeExpandableUserInitiatedClick    = 4  // 可伸展（用户点击触发）
+	CreativeAttributeExpandableUserInitiatedRollover = 5  // 可伸展（用户翻转触发）
+	CreativeAttributeInBannerVideoAdAutoPlay         = 6  // Banner内视频广告（自动播放）
+	CreativeAttributeInBannerVideoAdUserInitiated    = 7  // Banner内视频广告（用户触发）
+	CreativeAttributePop                             = 8  // 弹出广告（例如，在退出之前，之后或者当退出的时候）
+	CreativeAttributeProvocativeOrSuggestiveImagery  = 9  // Provocative or Suggestive Imagery
+	CreativeAttributeExtremeAnimation                = 10 // Shaky, Flashing, Flickering, Extreme Animation, Smileys
+	CreativeAttributeSurveys                         = 11 // 调查问卷
+	CreativeAttributeTextOnly                        = 12 // 文本广告
+	CreativeAttributeUserInitiated                   = 13 // 用户互动 （比如，嵌入式游戏）
+	CreativeAttributeWindowsDialogOrAlert            = 14 // 窗口对话框或弹出提示框
+	CreativeAttributeHasAudioWithPlayer              = 15 // 具有音频开关按钮
+	CreativeAttributeAdProvidesSkipButton            = 16 // 广告可以被跳过（例如，片头广告视频的跳过按钮）
+	CreativeAttributeAdobeFlash                      = 17 // Flash广告
 )
 
 // 5.4 Ad Position, 广告位置
 const (
-	AdPosUnknown    = 0 //未知
-	AdPosAboveFold  = 1
-	AdPosBelowFold  = 3
-	AdPosHeader     = 4
-	AdPosFooter     = 5
-	AdPosSidebar    = 6
-	AdPosFullscreen = 7
+	AdPosUnknown    = 0 // 未知
+	AdPosAboveFold  = 1 // Above the Fold
+	AdPosDeprecated = 2 // DEPRECATED - May or may not be initially visible depending on screen size/resolution.
+	AdPosBelowFold  = 3 // Below the Fold
+	AdPosHeader     = 4 // Header
+	AdPosFooter     = 5 // Footer
+	AdPosSidebar    = 6 // Sidebar
+	AdPosFullscreen = 7 // Full Screen
 )
 
 // 5.5 Expandable Direction, 伸展方向
 const (
-	ExpDirLeft       = 1
-	ExpDirRight      = 2
-	ExpDirUp         = 3
-	ExpDirDown       = 4
-	ExpDirFullScreen = 5
+	ExpDirLeft       = 1 // Left
+	ExpDirRight      = 2 // Right
+	ExpDirUp         = 3 // Up
+	ExpDirDown       = 4 // Down
+	ExpDirFullScreen = 5 // Full Screen
 )
 
 // 5.6 API Frameworks, API 框架
 const (
-	APIFrameworkVPAID1 = 1 //VPAID 1.0
-	APIFrameworkVPAID2 = 2 //VPAID 2.0
-	APIFrameworkMRAID1 = 3 //MARID-1
-	APIFrameworkORMMA  = 4 //ORMMA
-	APIFrameworkMRAID2 = 5 //MRAID-2
+	APIFrameworkVPAID1  = 1 // VPAID 1.0
+	APIFrameworkVPAID2  = 2 // VPAID 2.0
+	APIFrameworkMRAID1  = 3 // MARID-1
+	APIFrameworkORMMA   = 4 // ORMMA
+	APIFrameworkMRAID2  = 5 // MRAID-2
+	APIFrameworkdMRAID3 = 6 // MRAID-3
 )
 
 // 5.7 Video Linearity, 视频线性
 const (
-	VideoLinearityLinear    = 1 //线性
-	VideoLinearityNonLinear = 2 //非线性
+	VideoLinearityLinear    = 1 // 线性
+	VideoLinearityNonLinear = 2 // 非线性
 )
 
 // 5.8 Video and Audio Bid Response Protocols, 视频竞价响应协议
 const (
-	VideoProtoVAST1            = 1  //VAST 1.0
-	VideoProtoVAST2            = 2  //VAST 2.0
-	VideoProtoVAST3            = 3  //VAST 3.0
-	VideoProtoVAST1Wrapper     = 4  //VAST 1.0 Wrapper
-	VideoProtoVAST2Wrapper     = 5  //VAST 2.0 Wrapper
-	VideoProtoVAST3Wrapper     = 6  //VAST 3.0 Wrapper
-	VideoProtoVAST4            = 7  //VAST 4.0
-	VideoProtoVAST4Wrapper     = 8  //VAST 4.0 Wrapper
-	AudioProtocolDAAST1        = 9  //DAAST1.1
-	AudioProtocolDAAST1Wrapper = 10 //DAAST1.1 Wrapper
-)
-
-// 5.9 Video Playback Methods, 视频播放方式
-const (
-	VideoPlaybackAutoSoundOn  = 1 //自动播放（有声）
-	VideoPlaybackAutoSoundOff = 2 //自动播放（静音）
-	VideoPlaybackClickToPlay  = 3 //点击播放
-	VideoPlaybackMouseOver    = 4 //鼠标经过播放
+	VideoProtoVAST1            = 1  // VAST 1.0
+	VideoProtoVAST2            = 2  // VAST 2.0
+	VideoProtoVAST3            = 3  // VAST 3.0
+	VideoProtoVAST1Wrapper     = 4  // VAST 1.0 Wrapper
+	VideoProtoVAST2Wrapper     = 5  // VAST 2.0 Wrapper
+	VideoProtoVAST3Wrapper     = 6  // VAST 3.0 Wrapper
+	VideoProtoVAST4            = 7  // VAST 4.0
+	VideoProtoVAST4Wrapper     = 8  // VAST 4.0 Wrapper
+	AudioProtocolDAAST1        = 9  // DAAST 1.0
+	AudioProtocolDAAST1Wrapper = 10 // DAAST 1.0 Wrapper
 )
 
 // 5.9 Video Placement Types (Spec 2.5)
 const (
-	VideoPlacementInStream     = 1
-	VideoPlacementInBanner     = 2
-	VideoPlacementInArticle    = 3
-	VideoPlacementInFeed       = 4
-	VideoPlacementInterstitial = 5
+	VideoPlacementInStream     = 1 // In-Stream
+	VideoPlacementInBanner     = 2 // In-Banner
+	VideoPlacementInArticle    = 3 // In-Article
+	VideoPlacementInFeed       = 4 // In-Feed
+	VideoPlacementInterstitial = 5 // Interstitial/Slider/Floating
 )
 
-// 5.10 Video Start Delay, 视频播放延时
+// 5.10 Video Playback Methods, 视频播放方式
 const (
-	VideoStartDelayPreRoll         = 0  //视频前广告
-	VideoStartDelayGenericMidRoll  = -1 //普通视频中广告
-	VideoStartDelayGenericPostRoll = -2 //普通视频后广告
+	VideoPlaybackAutoSoundOn  = 1 // 自动播放（有声）
+	VideoPlaybackAutoSoundOff = 2 // 自动播放（静音）
+	VideoPlaybackClickToPlay  = 3 // 点击播放
+	VideoPlaybackMouseOver    = 4 // 鼠标经过播放
+	VideoPlaybackSoundOn      = 5 // Initiates on Entering Viewport with Sound On
+	VideoPlaybackSoundOff     = 6 // Initiates on Entering Viewport with Sound Off by Default
 )
 
-// 5.11 Video Quality, 视频质量
+// 5.11 Playback Cessation Modes
 const (
-	VideoQualityUnknown      = 0 //未知
-	VideoQualityProfessional = 1 //Professionally Produced 专业制作
-	VideoQualityProsumer     = 2 //Prosumer 专业级
-	VideoQualityUGC          = 3 //User Generated (UGC) 用户生成
+	TerminatedVideoCompletion          = 1 // On Video Completion or when Terminated by User
+	TerminatedLeavingViewport          = 2 // On Leaving Viewport or when Terminated by User
+	TerminatedLeavingViewportContinues = 3 // On Leaving Viewport Continues as a Floating/Slider Unit until Video Completion or when Terminated by User
 )
 
-// 5.12 VAST Companion Types, VAST 伴随类型 http://www.iab.net/vast
+// 5.12 Video Start Delay, 视频播放延时
+const (
+	VideoStartDelayPreRoll         = 0  // 视频前广告 Pre-Roll
+	VideoStartDelayGenericMidRoll  = -1 // 普通视频中广告 Generic Mid-Roll
+	VideoStartDelayGenericPostRoll = -2 // 普通视频后广告 Generic Post-Roll
+)
+
+// 5.13 Video Quality, 视频质量
+const (
+	VideoQualityUnknown      = 0 // 未知
+	VideoQualityProfessional = 1 // Professionally Produced 专业制作
+	VideoQualityProsumer     = 2 // Prosumer 专业级
+	VideoQualityUGC          = 3 // User Generated (UGC) 用户生成
+)
+
+// 5.14 VAST Companion Types, VAST 伴随类型 http://www.iab.net/vast
 const (
 	VASTCompanionStatic = 1 //静态资源
 	VASTCompanionHTML   = 2 //HTML资源
 	VASTCompanionIFrame = 3 //iframe资源
 )
 
-// 5.13 Content Delivery Methods, 内容传输方式
+// 5.15 Content Delivery Methods, 内容传输方式
 const (
 	ContentDeliveryStreaming   = 1 //Streaming
 	ContentDeliveryProgressive = 2 //Progressive
 	ContentDeliveryDownload    = 3 //Download
 )
 
-// 5.14 Content Context, 内容上下文 该表继承自QAG,实现者应当与QAG的相关描述保持一致
+// 5.16 Feed Types
+const (
+	FeedMusicService = 1 // Music Service
+	FeedBroadcast    = 2 // FM/AM Broadcast
+	FeedPodcast      = 3 // Podcast
+)
+
+// 5.17 Volume Normalization Modes
+const (
+	VolumeNone               = 0 // None
+	VolumeAverageNormalized  = 1 // Ad Volume Average Normalized to Content
+	VolumePeakNormalized     = 2 // Ad Volume Peak Normalized to Content
+	VolumeLoudnessNormalized = 3 // Ad Loudness Normalized to Content
+	VolumeCustom             = 4 // Custom Volume Normalization
+)
+
+// 5.18 Content Context, 内容上下文 该表继承自QAG,实现者应当与QAG的相关描述保持一致
 const (
 	ContextVideo       = 1 //视频(一个别用户观看的视频文件或者视频流， 包括网络电视广播)
 	ContextGame        = 2 //游戏(用户正在玩的游戏)
@@ -135,21 +165,21 @@ const (
 	ContextUnknown     = 7 //未知
 )
 
-// 5.15 QAG Media Ratings, QAG 媒体级别 http://www.iab.net/ne_guidelines
+// 5.19 QAG Media Ratings, QAG 媒体级别 http://www.iab.net/ne_guidelines
 const (
 	QAGAll    = 1 //所有受众
 	QAGOver12 = 2 //大于12岁
 	QAGMature = 3 //成年人
 )
 
-// 5.16 Location Type, 位置类型
+// 5.20 Location Type, 位置类型
 const (
 	LocationTypeGPS  = 1 //GPS/定位服务
 	LocationTypeIP   = 2 //IP地址
 	LocationTypeUser = 3 //用户提供(例如注册信息)
 )
 
-// 5.17 Device Type, 设备类型 该表继承自QAG
+// 5.21 Device Type, 设备类型 该表继承自QAG
 const (
 	DeviceTypeUnknown   = 0 //未知
 	DeviceTypeMobile    = 1 //手机/平板
@@ -161,7 +191,7 @@ const (
 	DeviceTypeSetTopBox = 7 //机顶盒
 )
 
-// 5.18 Connection Type, 连接方式
+// 5.22 Connection Type, 连接方式
 const (
 	ConnTypeUnknown  = 0 //未知
 	ConnTypeEthernet = 1 //Ethernet以太网
@@ -172,17 +202,29 @@ const (
 	ConnTypeCell4G   = 6 //移动网络-4G
 )
 
-// 5.19 No-Bid Reason Codes, 状态返回
+// 5.23 IP Location Services
+// The following table lists the services and/or vendors used for resolving IP addresses to geolocations.
 const (
-	NBRUnknownError      = 0
-	NBRTechnicalError    = 1
-	NBRInvalidRequest    = 2
-	NBRKnownSpider       = 3
-	NBRSuspectedNonHuman = 4
-	NBRProxyIP           = 5
-	NBRUnsupportedDevice = 6
-	NBRBlockedSite       = 7
-	NBRUnmatchedUser     = 8
+	IPLocationServiceip2location = 1 // ip2location
+	IPLocationServiceNeustar     = 2 // Neustar (Quova)
+	IPLocationServiceMaxMind     = 3 // MaxMind
+	IPLocationServiceNetAcuity   = 4 // NetAcuity (Digital Element)
+)
+
+// 5.24 No-Bid Reason Codes, 状态返回
+// The following table lists the options for a bidder to signal the exchange as to why it did not offer a bid for the impression
+const (
+	NBRUnknownError      = 0  // Unknown Error
+	NBRTechnicalError    = 1  // Technical Error
+	NBRInvalidRequest    = 2  // Invalid Request
+	NBRKnownSpider       = 3  // Known Web Spider
+	NBRSuspectedNonHuman = 4  // Suspected Non-Human Traffic
+	NBRProxyIP           = 5  // Cloud, Data center, or Proxy IP
+	NBRUnsupportedDevice = 6  // Unsupported Device
+	NBRBlockedSite       = 7  // Blocked Publisher or Site
+	NBRUnmatchedUser     = 8  // Unmatched User
+	NBRDailyReader       = 9  // Daily Reader Cap Met
+	NBRDailyDomain       = 10 // Daily Domain Cap Met
 )
 
 /*************************************************************************
@@ -242,7 +284,6 @@ type Geo struct {
 // 设备的用户， 广告的受众
 type User struct {
 	ID         string    `json:"id,omitempty"`         // 交易特定的用户标识， 推荐id和buyeruid中至少提供一个
-	BuyerID    string    `json:"buyerid,omitempty"`    // Buyer-specific ID for the user as mapped by the exchange for the buyer. At least one of buyeruid/buyerid or id is recommended. Valid for OpenRTB 2.3.
 	BuyerUID   string    `json:"buyeruid,omitempty"`   // 买方为用户指定的ID，由交易平台为买方映射。推荐id和buyeruid中至少提供一个.
 	YOB        int       `json:"yob,omitempty"`        // 生日年份，使用4位数字表示
 	Gender     string    `json:"gender,omitempty"`     // 性别， M表示男性， F表示女性， O标识其他类型，不填充表示未知
@@ -251,6 +292,7 @@ type User struct {
 	Geo        *Geo      `json:"geo,omitempty"`        // Geo对象， 用户家的位置信息。不必是用户的当前位置
 	Data       []Data    `json:"data,omitempty"`       // 附加的用户信息， 每个 Data对象表示一个不同的数据源
 	Ext        Extension `json:"ext,omitempty"`        // 特定交易的OpenRTB协议的扩展信息占位符
+	//BuyerID    string    `json:"buyerid,omitempty"`    // Buyer-specific ID for the user as mapped by the exchange for the buyer. At least one of buyeruid/buyerid or id is recommended. Valid for OpenRTB 2.3.
 }
 
 // Data和Segment对象一起允许指定用户附加信息。数据可能来自多个数据源， 可能来自交易平台自身或者第三方提供的信息， 可以使用id属性区分。

@@ -2,8 +2,8 @@ package openrtb
 
 type Inventory struct {
 	ID            string     `json:"id,omitempty"`            // ID on the exchange
-	Name          string     `json:"name,omitempty"`          //
-	Domain        string     `json:"domain,omitempty"`        //
+	Name          string     `json:"name,omitempty"`          // Site name (may be aliased at the publisher’s request).
+	Domain        string     `json:"domain,omitempty"`        // Domain of the site (e.g., “mysite.foo.com”).
 	Cat           []string   `json:"cat,omitempty"`           // Array of IAB content categories
 	SectionCat    []string   `json:"sectioncat,omitempty"`    // Array of IAB content categories for subsection
 	PageCat       []string   `json:"pagecat,omitempty"`       // Array of IAB content categories for page
@@ -11,7 +11,7 @@ type Inventory struct {
 	Publisher     *Publisher `json:"publisher,omitempty"`     // Details about the Publisher
 	Content       *Content   `json:"content,omitempty"`       // Details about the Content
 	Keywords      string     `json:"keywords,omitempty"`      // Comma separated list of keywords about the site.
-	Ext           Extension  `json:"ext,omitempty"`
+	Ext           Extension  `json:"ext,omitempty"`           // 特定交易的OpenRTB协议的扩展信息占位符
 }
 
 // GetPrivacyPolicy returns the privacy policy value
