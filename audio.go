@@ -10,7 +10,6 @@ var (
 	ErrInvalidAudioNoMimes = errors.New("openrtb: audio has no mimes")
 )
 
-//Openrtb2.4新增
 type Audio struct {
 	Mimes         []string  `json:"mimes"`                   // 支持的内容mime-type
 	MinDuration   int       `json:"minduration,omitempty"`   // 最小的音频长度， 以秒为单位

@@ -14,12 +14,11 @@ type Deal struct {
 	BidFloor         float64   `json:"bidfloor,omitempty"`    // 本次展示的最低竞价，以CPM为单位
 	BidFloorCurrency string    `json:"bidfloorcur,omitempty"` // 使用ISO-4217码表指定的货币。 如果交易平台允许，这可能与竞价者返回的竞价货币类型不一致
 	WSeat            []string  `json:"wseat,omitempty"`       // 允许参与本次交易竞价的买方席位白名单。 席位ID需要交易平台和竞拍者提前协商， 忽略本属性标示没有席位限制
-	WAdvDomain       []string  `json:"wadomain,omitempty"`    //
+	WAdvDomain       []string  `json:"wadomain,omitempty"`    // Array of advertiser domains (e.g., advertiser.com) allowed to bid on this deal. Omission implies no advertiser restrictions.
 	AuctionType      int       `json:"at,omitempty"`          // 允许参与本次交易竞价的广告主域名列表（例如， advertiser.com). 忽略本属性标示没有广告主限制。
 	Ext              Extension `json:"ext,omitempty"`         // 特定交易的OpenRTB协议的扩展信息占位符
-
-	Seats []string `json:"seats,omitempty"`
-	Type  int      `json:"type,omitempty"`
+	//Seats []string `json:"seats,omitempty"`
+	//Type  int      `json:"type,omitempty"`
 }
 
 type jsonDeal Deal
