@@ -10,7 +10,7 @@ var (
 	ErrInvalidAudioNoMimes = errors.New("openrtb: audio has no mimes")
 )
 
-// The "audio" object must be included directly in the impression object
+//Openrtb2.4新增
 type Audio struct {
 	Mimes         []string  `json:"mimes"`                   // Content MIME types supported.
 	MinDuration   int       `json:"minduration,omitempty"`   // Minimum video ad duration in seconds
@@ -30,7 +30,7 @@ type Audio struct {
 	Feed          int       `json:"feed,omitempty"`          // Type of audio feed.
 	Stitched      int       `json:"stitched,omitempty"`      // Indicates if the ad is stitched with audio content or delivered independently
 	NVol          int       `json:"nvol,omitempty"`          // Volume normalization mode.
-	Ext           Extension `json:"ext,omitempty"`
+	Ext           Extension `json:"ext,omitempty"`           //
 }
 
 type jsonAudio Audio
