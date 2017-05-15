@@ -8,7 +8,7 @@ package openrtb
 
 type Banner struct {
 	W        int       `json:"w,omitempty"`        //展示的宽度，以像素为单位，如果没有指定wmin以及wmax, 这个值指的就是需要的展示宽度，否则指的是一个期望宽度
-	H        int       `json:"h,omitempty"`        //展示的高度，以像素为党委，如果没有指定hmin以及hmax, 这个值指的就是需要的展示高度， 否则指的是一个期望高度
+	H        int       `json:"h,omitempty"`        //展示的高度，以像素为单位，如果没有指定hmin以及hmax, 这个值指的就是需要的展示高度， 否则指的是一个期望高度
 	Format   []Format  `json:"format,omitempty"`   //Array of format objects representing the banner sizes permitted.
 	WMax     int       `json:"wmax,omitempty"`     //展示宽度的最大值，以像素为单位， 如果和w一起出现， 则w应该被解释为推荐宽度或者期望宽度
 	HMax     int       `json:"hmax,omitempty"`     //展示高度的最大值，以像素为单位， 如果和h一起出现， 则h应该被解释为推荐宽度或者期望宽度
