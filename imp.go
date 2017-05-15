@@ -14,6 +14,7 @@ var (
 // 但是，对于展示的任何给定的竞价请求必须属于提供的类型之一。
 type Impression struct {
 	ID                string         `json:"id"`                          // 在当前竞价请求上下文中唯一标识本次展示的标识（通常从1开始并以此递增)
+	Metric            []Metric       `json:"metric,omitempty"`            // An array of Metric object (Section 3.2.5).
 	Banner            *Banner        `json:"banner,omitempty"`            // Banner对象，如果展示需要以banner的形式提供则需要填充
 	Video             *Video         `json:"video,omitempty"`             // Video对象，如果展示需要以视频的形式提供则需要填充
 	Audio             *Audio         `json:"audio,omitempty"`             // Audio对象

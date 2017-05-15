@@ -42,3 +42,26 @@ type Site struct {
 	Search string `json:"search,omitempty"` // 引导到当前页面的搜索字符串
 	Mobile int    `json:"mobile,omitempty"` // 移动优化标志， 0表示否，1表示是
 }
+
+// This object describes the nature and behavior of the entity that is the source of the bid request
+// upstream from the exchange. The primary purpose of this object is to define post-auction or upstream
+// decisioning when the exchange itself does not control the final decision. A common example of this is
+// header bidding, but it can also apply to upstream server entities such as another RTB exchange, a
+// mediation platform, or an ad server combines direct campaigns with 3rd party demand in decisioning
+type Source struct {
+	FD     int       `json:"id,omitempty"`     // Entity responsible for the final impression sale decision, where 0 = exchange, 1 = upstream source.
+	TID    string    `json:"tid,omitempty"`    // Transaction ID that must be common across all participants in this bid request (e.g., potentially multiple exchanges).
+	PChain string    `json:"pchain,omitempty"` // Payment ID chain string containing embedded syntax described in the TAG Payment ID Protocol v1.0.
+	Ext    Extension `json:"ext,omitempty"`    // 特定交易的OpenRTB协议的扩展信息占位符
+}
+
+// This object is associated with an impression as an array of metrics. These metrics can offer insight into
+// the impression to assist with decisioning such as average recent viewability, click-through rate, etc. Each
+// metric is identified by its type, reports the value of the metric, and optionally identifies the source or
+// vendor measuring the value.
+type Metric struct {
+	Type   string    `json:"type,omitempty"`   // Type of metric being presented using exchange curated string names which should be published to bidders a priori.
+	Value  string    `json:"value,omitempty"`  // Number representing the value of the metric. Probabilities must be in the range 0.0 – 1.0.
+	Vendor string    `json:"vendor,omitempty"` // Source of the value using exchange curated string names which should be published to bidders a priori. If the exchange itself is the source versus a third party, “EXCHANGE” is recommended.
+	Ext    Extension `json:"ext,omitempty"`    // 特定交易的OpenRTB协议的扩展信息占位符
+}
