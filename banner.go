@@ -22,5 +22,6 @@ type Banner struct {
 	TopFrame int       `json:"topframe,omitempty"` // banner是在顶层frame中而不是iframe中， 0表示不是， 1表示是
 	ExpDir   []int     `json:"expdir,omitempty"`   // banner可以扩展的方向 5.5
 	Api      []int     `json:"api,omitempty"`      // 本次展示支持的API框架列表， 参考5.6. 如果一个API没有被显式在列表中指明，则表示不支持
+	Vcm      int       `json:"vcm,omitempty"`      // Relevant only for Banner objects used with a Video object (Section 3.2.7) in an array of companion ads. Indicates the companion banner rendering mode relative to the associated video, where 0 = concurrent, 1 = end-card.
 	Ext      Extension `json:"ext,omitempty"`      // 特定交易的OpenRTB协议的扩展信息占位符
 }
